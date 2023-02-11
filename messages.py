@@ -20,11 +20,11 @@ incorrect_answer = [
 ]
 
 def get_message(question, correct):
-    right_answer = f'The right answer is {question["correct_answer"]}.'
+    right_answer = f'The right answer is: {question["correct_answer"]}.'
     if correct:
-        response = f'{random.choice(correct_answer)} {right_answer}'
+        response = f'{random.choice(correct_answer)} "{right_answer}"'
     else:
-        response = f'{random.choice(incorrect_answer)} {right_answer}'
+        response = f'{random.choice(incorrect_answer)} "{right_answer}"'
     print(response)
 
     
