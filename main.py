@@ -10,11 +10,12 @@ print("Welcome to the Trivia Game!\nThis game uses data from https://opentdb.com
 questions_list.init_trivia()
 
 while play_again:
-    guess = ''
     for n in range(1, 11):
+        guess = ''
         questions_list.get_next_question()
         while guess == '' or guess not in letter_choices:
-            guess = input(f'Your answer: ').upper().split()
+            print(guess in letter_choices)
+            guess = input(f'Your answer: ').upper()
         questions_list.check_answer(guess)
 
     print(f'Total score: {questions_list.score}')
