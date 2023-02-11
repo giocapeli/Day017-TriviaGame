@@ -1,16 +1,17 @@
-import TriviaModule
+from modules import questions
 
-questions_list = TriviaModule.TriviaQuestions()
+questions_list = questions.TriviaQuestions()
 play_again = True
 
 print("Welcome to the Trivia Game!\nThis game uses data from https://opentdb.com/\n")
 
+questions_list.init_trivia()
+
 while play_again:
     for n in range(1, 11):
-        questions_list.GetNextQuestion()
-        guess = input(f'{questions_list.current_question}\nOptions: {questions_list.current_options}\n')
-        questions_list.CheckAnswer(guess)
-        print(f'Your score until now: {questions_list.score} of {n}\n')
+        questions_list.get_next_question()
+        guess = input(f'Your answer: ').upper().split()[0]
+        questions_list.check_answer(guess)
 
     print(f'Total score: {questions_list.score}')
     continue_playing = input("Play again? (Y/N): \n").lower()
