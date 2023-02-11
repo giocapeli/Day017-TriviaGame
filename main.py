@@ -14,7 +14,6 @@ while play_again:
         guess = ''
         questions_list.get_next_question()
         while guess == '' or guess not in letter_choices:
-            print(guess in letter_choices)
             guess = input(f'Your answer: ').upper()
         questions_list.check_answer(guess)
 
