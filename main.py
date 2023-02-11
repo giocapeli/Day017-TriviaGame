@@ -1,6 +1,6 @@
-from modules import questions
+from questions import TriviaQuestions
 
-questions_list = questions.TriviaQuestions()
+questions_list = TriviaQuestions()
 play_again = True
 
 print("Welcome to the Trivia Game!\nThis game uses data from https://opentdb.com/\n")

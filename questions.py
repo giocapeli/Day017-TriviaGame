@@ -1,6 +1,6 @@
-import request_data
 import random
-import messages
+from request_data import Questions
+from messages import get_message
 
 letter_choices = ["A", "B", "C", "D", "E"]
 
@@ -16,26 +16,26 @@ class TriviaQuestions:
         self.question_n = 1
 
     def init_trivia(self):
-        self.data = request_data.Questions()
-        self.get_questions(self)
+        self.data = Questions()
+        self.get_questions()
 
     def get_questions(self):
         if not self.data:
             self.init_trivia()
         self.data.request_questions()
-        for q in self.data['results']:
+        for q in self.data.data:
             self.questions.append(q)
 
     def get_next_question(self):
         if len(self.questions) <= 0:
-            self.get_questions(self)
+            self.get_questions()
         
         self.current_question = self.questions[0]['question']
         self.correct_answer = self.questions[0]['correct_answer']
         self.current_options = self.questions[0]['incorrect_answers']
         self.current_options.append(self.correct_answer)
         random.shuffle(self.current_options)
-        self.print_question(self)
+        self.print_question()
         self.question_n += 1
 
     def print_question(self):
@@ -49,9 +49,9 @@ class TriviaQuestions:
         print(f'You guessed: {guess}, {self.current_options[index]}')
         if self.current_options[index] == self.correct_answer:
             self.score += 1
-            messages.get_message(self.questions[0], True)
+            get_message(self.questions[0], True)
         else:
-            messages.get_message(self.questions[0], False)
-        print(f'Your score until now: {questions_list.score} of {n}\n')
+            get_message(self.questions[0], False)
+        print(f'Your score until now: {self.score}\n')
         self.questions.pop(0)
 
