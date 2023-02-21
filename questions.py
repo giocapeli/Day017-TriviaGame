@@ -2,6 +2,7 @@ import random
 from collections import deque
 from request_data import Questions
 from messages import get_message
+import html
 
 letter_choices = ["A", "B", "C", "D", "E"]
 
@@ -32,10 +33,12 @@ class TriviaQuestions:
         self.print_question()
 
     def print_question(self):
-        print(f'Question {len(self.questions)}: {self.current_question}')
+        unescape_question = html.unescape(self.current_question)
+        print(f'Question {len(self.questions)}: {unescape_question}')
         print(f'Options:')
-        for i, o in self.current_options.items():
-            print(f'[{i}] {o}')
+        for i, opt in self.current_options.items():
+            unescape_option = html.unescape(opt)
+            print(f'[{i}] {unescape_option}')
 
     def check_answer(self, guess):
         print(f'You guessed: {guess}, {self.current_options[guess]}')
