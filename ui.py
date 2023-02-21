@@ -21,11 +21,16 @@ class Interface:
             font=("Arial", 20, "italic"))
         self.canvas.grid(row=1, column=0, columnspan=2, pady=50)
         
-        self.true_image = PhotoImage(file="images/true.png")
-        self.button_true = Button(image=self.true_image, highlightthickness=0)
+        true_image = PhotoImage(file="images/true.png")
+        self.button_true = Button(image=true_image, highlightthickness=0)
         self.button_true.grid(row=2, column=0)
-        self.false_image = PhotoImage(file="images/false.png")
-        self.button_false = Button(image=self.false_image, highlightthickness=0)
+        false_image = PhotoImage(file="images/false.png")
+        self.button_false = Button(image=false_image, highlightthickness=0)
         self.button_false.grid(row=2, column=1)
         
         self.window.mainloop()
+        
+    def print_next_question(self):
+        questions_list = TriviaQuestions()
+        questions_list.get_next_question()
+    
