@@ -1,16 +1,24 @@
 import requests
 
+open_trivia_URL = "https://opentdb.com/api.php"
+head_start = {
+    "amount": 10,
+    "type": "boolean",
+    "difficulty":"easy",
+    "token":''
+}
+
 class Questions:
 
     def __init__(self):
         self.token = False
         self.data = False
+        self.head = head_start
 
     def request_questions(self):
-        if not self.token:
-            self.token = self.request_token() 
-        url = f"https://opentdb.com/api.php?amount=10&{self.token if self.token else ''}"
-        response = requests.get(url)
+        if not self.head["token"]:
+            self.head["token"] = self.request_token() 
+        response = requests.get(open_trivia_URL, self.head)
         if response.status_code == 200:
             self.data = response.json()["results"]
         else:
@@ -18,8 +26,8 @@ class Questions:
             return False
 
     def request_token(self):
-        url = "https://opentdb.com/api_token.php?command=request"
-        response = requests.get(url)
+        token_url = "https://opentdb.com/api_token.php?command=request"
+        response = requests.get(token_url)
         if response.status_code == 200:
             data = response.json()
             return data["token"]
