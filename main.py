@@ -8,7 +8,7 @@ letter_choices = ["A", "B", "C", "D", "E"]
 
 print("Welcome to the Trivia Game!\nThis game uses data from https://opentdb.com/\n")
 
-questions_list.init_trivia()
+# questions_list.init_trivia()
 
 quiz_ui = ui.Interface()
 
